@@ -27,7 +27,7 @@ public class AddressBookController {
 
     @GetMapping("/get/{addId}")
     public ResponseEntity<ResponseDTO> getAddressBookData(@PathVariable("addId") int addId) {
-        AddressBookData addData = addressBookService.getAddressBookDataById();
+        AddressBookData addData = addressBookService.getAddressBookDataById(addId);
         ResponseDTO respDT0 = new ResponseDTO("Get Call For ID Successful", addData);
         return new ResponseEntity<ResponseDTO>(respDT0, HttpStatus.OK);
     }
@@ -39,9 +39,10 @@ public class AddressBookController {
         return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
     }
 
-    @PutMapping("/update")
-    public ResponseEntity<ResponseDTO> updateEmployeePayrollData(@RequestBody AddressBookDTO addDTO) {
-        AddressBookData addData = addressBookService.updateAddressBookData(addDTO);
+    @PutMapping("/update/{addId}")
+    public ResponseEntity<ResponseDTO> updateEmployeePayrollData(@PathVariable("addId") int addId,
+            @RequestBody AddressBookDTO addDTO) {
+        AddressBookData addData = addressBookService.updateAddressBookData(addId,addDTO);
         ResponseDTO respDTO = new ResponseDTO("Updated Address Book Data Successfully", addData);
         return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
     }
