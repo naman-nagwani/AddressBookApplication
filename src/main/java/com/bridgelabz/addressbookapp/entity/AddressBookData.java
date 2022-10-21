@@ -1,42 +1,54 @@
 package com.bridgelabz.addressbookapp.entity;
 
 import com.bridgelabz.addressbookapp.DTO.AddressBookDTO;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
+
+@Data
+@NoArgsConstructor
+@Entity
+@Table(name = "address_book")
 public class AddressBookData {
 
+    @Id
+    @GeneratedValue
+    @Column(name = "address_id")
     private int addId;
-    private String name;
+
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Column(name = "last_name")
+    private String lastName;
+    private String phoneNo;
+    private String eMail;
     private String address;
+    private String city;
+    private String state;
+    private String pin;
 
-    public AddressBookData() {}
 
-    public AddressBookData(int addId, AddressBookDTO addDTO) {
-        this.addId = addId;
-        this.name = addDTO.name;
-        this.address = addDTO.address;
+    public AddressBookData(AddressBookDTO addDTO) {
+        this.firstName = addDTO.getFirstName();
+        this.lastName = addDTO.getLastName();
+        this.phoneNo = addDTO.getPhoneNo();
+        this.eMail = addDTO.getEMail();
+        this.address = addDTO.getAddress();
+        this.city = addDTO.getCity();
+        this.state = addDTO.getState();
+        this.pin = addDTO.getPin();
     }
 
-    public int getAddId() {
-        return addId;
-    }
-
-    public void setAddId(int addId) {
-        this.addId = addId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
+    public void updateAddressBookData(AddressBookDTO addDTO) {
+        this.firstName = addDTO.getFirstName();
+        this.lastName = addDTO.getLastName();
+        this.phoneNo = addDTO.getPhoneNo();
+        this.eMail = addDTO.getEMail();
+        this.address = addDTO.getAddress();
+        this.city = addDTO.getCity();
+        this.state = addDTO.getState();
+        this.pin = addDTO.getPin();
     }
 }

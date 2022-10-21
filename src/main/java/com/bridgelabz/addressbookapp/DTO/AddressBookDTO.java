@@ -1,20 +1,27 @@
 package com.bridgelabz.addressbookapp.DTO;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Pattern;
+
+@Data
+@AllArgsConstructor
 public class AddressBookDTO {
 
-    public String name;
-    public String address;
+    @Pattern(regexp = "^[A-Z]{1}[a-zA-Z\\s]{2,}$", message = "Invalid first name")
+    private String firstName;
+    @Pattern(regexp = "^[A-Z]{1}[a-zA-Z\\s]{2,}$", message = "Invalid last name")
+    private String lastName;
 
-    public AddressBookDTO(String name, String address) {
-        this.name = name;
-        this.address = address;
-    }
+    @Pattern(regexp = "^[0-9]{2} [0-9]{10}$",message = "Invalid phone number")
+    private String phoneNo;
 
-    @Override
-    public String toString() {
-        return "AddressBookDTO{" +
-                "name='" + name + '\'' +
-                ", address='" + address + '\'' +
-                '}';
-    }
+    @Email
+    private String eMail;
+    private String address;
+    private String city;
+    private String state;
+    private String pin;
 }
