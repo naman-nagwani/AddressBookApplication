@@ -22,7 +22,7 @@ public class AddressBookController {
     @RequestMapping(value = {"","/" ,"/get"})
     public ResponseEntity<ResponseDTO> getAddressBookData() {
         List<AddressBookData> addDataList = addressBookService.getAddressBookData();
-        ResponseDTO respDTO = new ResponseDTO("Get Call Successfull", addDataList);
+        ResponseDTO respDTO = new ResponseDTO("Get Call Successful", addDataList);
         return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
     }
 
@@ -31,6 +31,13 @@ public class AddressBookController {
         AddressBookData addData = addressBookService.getAddressBookDataById(addId);
         ResponseDTO respDT0 = new ResponseDTO("Get Call For ID Successful", addData);
         return new ResponseEntity<ResponseDTO>(respDT0, HttpStatus.OK);
+    }
+
+    @GetMapping("/city")
+    public ResponseEntity<ResponseDTO> getAddressBookDataOrderByCity() {
+        List<AddressBookData> addDataList = addressBookService.getAddressBookDataOrderByCity();
+        ResponseDTO respDTO = new ResponseDTO("Get call order by city successful",addDataList);
+        return new ResponseEntity<>(respDTO,HttpStatus.OK);
     }
 
     @PostMapping("/create")

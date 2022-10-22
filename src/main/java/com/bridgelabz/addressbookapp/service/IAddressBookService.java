@@ -17,4 +17,5 @@ public interface IAddressBookService {
 
     void deleteAddressBookData(int addId);
 
+    List<AddressBookData> getAddressBookDataOrderByCity();
 }

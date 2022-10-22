@@ -27,6 +27,10 @@ public class AddressBookService implements IAddressBookService{
         return addressBookRepository.findById(addId).orElseThrow(()->new AddressBookException("Data not found"));
     }
 
+    public List<AddressBookData> getAddressBookDataOrderByCity() {
+        return addressBookRepository.findAddressBookDataOrderByCity();
+    }
+
     @Override
     public AddressBookData createAddressBookData(AddressBookDTO addDTO) {
         AddressBookData addData = new AddressBookData(addDTO);
